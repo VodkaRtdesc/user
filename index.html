@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acesso</title>
+<title>Login</title>
 
 <style>
 body{
@@ -16,21 +16,27 @@ body{
     font-family: Arial, sans-serif;
 }
 
-.box{
-    width:340px;
+.container{
+    width:360px;
 }
 
-h2{
+.top-text{
     margin-bottom:20px;
-    font-weight:500;
-    font-size:20px;
+    font-size:15px;
+    color:#111;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-size:14px;
     color:#111;
 }
 
 input{
     width:100%;
     padding:12px;
-    margin-bottom:12px;
+    margin-bottom:14px;
     border:1px solid #ccc;
     border-radius:6px;
     font-size:14px;
@@ -57,7 +63,7 @@ button:hover{
 }
 
 .msg{
-    margin-top:12px;
+    margin-top:14px;
     font-size:14px;
     color:#c00000;
     display:none;
@@ -67,12 +73,18 @@ button:hover{
 
 <body>
 
-<div class="box">
-    <h2>Entrar</h2>
+<div class="container">
+    <div class="top-text">
+        Insira suas credenciais para continuar
+    </div>
 
-    <form id="login">
+    <form id="loginForm">
+        <label>Usuário</label>
         <input type="text" required>
+
+        <label>Senha</label>
         <input type="password" id="senha" required>
+
         <button type="submit">Entrar</button>
     </form>
 
@@ -80,22 +92,21 @@ button:hover{
 </div>
 
 <script>
-function usuarioAleatorio(){
+function gerarUsuario(){
     const nomes = [
         "marcos","ana","lucas","fernanda","gabriel",
         "carla","rafael","beatriz","thiago","juliana"
     ];
-    const nome = nomes[Math.floor(Math.random() * nomes.length)];
     const numero = Math.floor(Math.random() * 900 + 100);
-    return "@" + nome + numero;
+    return "@" + nomes[Math.floor(Math.random() * nomes.length)] + numero;
 }
 
-document.getElementById("login").addEventListener("submit", function(e){
+document.getElementById("loginForm").addEventListener("submit", function(e){
     e.preventDefault();
 
-    const mensagem = document.getElementById("msg");
-    mensagem.style.display = "block";
-    mensagem.textContent = "Esta senha já está sendo utilizada por " + usuarioAleatorio();
+    const msg = document.getElementById("msg");
+    msg.style.display = "block";
+    msg.textContent = "Esta senha já está sendo utilizada por " + gerarUsuario();
 
     document.getElementById("senha").value = "";
 });
