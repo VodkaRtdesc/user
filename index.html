@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login 100% Confiável</title>
+  <style>
+    body{
+      margin:0;
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#0f0f12;
+      font-family: Arial, sans-serif;
+      color:#fff;
+    }
+    .card{
+      width:min(420px, 92vw);
+      background:#17171c;
+      padding:24px;
+      border-radius:16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.45);
+    }
+    h1{
+      margin:0 0 14px 0;
+      font-size:22px;
+      font-weight:700;
+    }
+    p{
+      margin:0 0 18px 0;
+      color:#cfcfe6;
+      font-size:14px;
+    }
+    label{
+      display:block;
+      margin:10px 0 6px;
+      font-size:13px;
+      color:#cfcfe6;
+    }
+    input{
+      width:100%;
+      padding:12px 12px;
+      border-radius:10px;
+      border:1px solid #2b2b35;
+      background:#0f0f12;
+      color:#fff;
+      outline:none;
+      font-size:14px;
+    }
+    input:focus{
+      border-color:#6a00ff;
+      box-shadow:0 0 0 3px rgba(106,0,255,.20);
+    }
+    button{
+      width:100%;
+      margin-top:16px;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      background:#6a00ff;
+      color:#fff;
+      font-size:15px;
+      cursor:pointer;
+      transition:.2s;
+    }
+    button:hover{ background:#8c2bff; transform: translateY(-1px); }
+    .msg{
+      margin-top:14px;
+      padding:12px;
+      border-radius:12px;
+      background:#101018;
+      border:1px solid #2b2b35;
+      color:#fff;
+      display:none;
+      line-height:1.35;
+      font-size:14px;
+    }
+    .warn{
+      border-color:#ff3d3d55;
+      background:#1a0f12;
+    }
+    .small{
+      margin-top:10px;
+      font-size:12px;
+      color:#a9a9c7;
+    }
+    .tag{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      background:#2b2b35;
+      color:#cfcfe6;
+      font-size:12px;
+      margin-left:6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Área Ultra Secreta <span class="tag">meme</span></h1>
+    <p>Entre com usuário e senha (totalmente seguro, confia).</p>
+
+    <form id="loginForm">
+      <label for="user">Usuário</label>
+      <input id="user" type="text" placeholder="ex: xitsune" required />
+
+      <label for="pass">Senha</label>
+      <input id="pass" type="password" placeholder="••••••••" required />
+
+      <button type="submit">Entrar</button>
+    </form>
+
+    <div id="msg" class="msg warn"></div>
+    <div class="small">*Isso é só zoeira. Não salva nada.</div>
+  </div>
+
+  <script>
+    function usuarioAleatorio() {
+      const nomes = [
+        "sharkgirl", "noitefria", "miau404", "t0xico", "pao_de_queijo",
+        "ghostzin", "pixelzin", "lua_azul", "cafecomcaos", "xX_sus_Xx",
+        "gatinh0", "nervosa", "biscoito", "omega", "kiddo"
+      ];
+      const n = nomes[Math.floor(Math.random() * nomes.length)];
+      const num = Math.floor(Math.random() * 9000) + 1000; // 1000-9999
+      return "@" + n + num;
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const senha = document.getElementById("pass").value.trim();
+      const msg = document.getElementById("msg");
+
+      // Mostra a mensagem zoeira
+      msg.style.display = "block";
+      msg.textContent = `Esta senha já está sendo utilizada por ${usuarioAleatorio()}`;
+
+      // opcional: limpar a senha pra dar mais "meme"
+      document.getElementById("pass").value = "";
+    });
+  </script>
+</body>
+</html>
